@@ -1,4 +1,5 @@
 function generateQRCode() {
+    let url = window.location.href;
     let qrcodePlace = document.getElementById("qrcode");
     qrcodePlace.innerHTML = "";
     const id = document.getElementById("id").value; // Hier muss die gewünschte ID aus der Datenbank eingefügt werden
@@ -6,7 +7,7 @@ function generateQRCode() {
     //Hier wird der QR Code Generiert
     let qrcode = new QRCode(qrcodePlace, {
         //Hier kann der Link angepasst werden
-        text: `http://127.0.0.1:5500/profil.html?id=${id}`, //<-- Hier kann die UUID statt der ID genutzt werden
+        text: `${url}/profil.html?id=${id}`, //<-- Hier kann die UUID statt der ID genutzt werden
         width: 256,
         height: 256,
         colorDark: "#000000",
@@ -15,7 +16,7 @@ function generateQRCode() {
     });
 
     //Diese Funktion ist für Testzwecke erstellt worden, damit der Link schnell im Browser getestet werden kann.
-    let link = `http://127.0.0.1:5500/profil.html?id=${id}`; 
+    let link = `${url}/profil.html?id=${id}`;  
     linkAdd = `<a href="${link}" target="_blank">${link}</a>`;
     document.getElementById("link").innerHTML = linkAdd;
 }
